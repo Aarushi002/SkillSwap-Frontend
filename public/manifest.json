@@ -1,0 +1,18 @@
+{
+  "short_name": "SkillSwap Hub",
+  "name": "SkillSwap Hub - Barter Economy Platform",
+  "description": "A peer-to-peer skill exchange marketplace with Tinder-like matching and virtual wallet system",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%2310b981'/><text x='50' y='58' text-anchor='middle' fill='white' font-size='20' font-family='Arial'>SS</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#10b981",
+  "background_color": "#ffffff",
+  "categories": ["education", "social", "productivity"],
+  "orientation": "portrait-primary"
+}
