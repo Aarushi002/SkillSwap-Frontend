@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { 
   CurrencyDollarIcon, 
@@ -18,19 +18,13 @@ const WalletPage = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
 
-  useEffect(() => {
-    fetchWalletData();
-  }, [filter]);
-
-  const fetchWalletData = async () => {
+  const fetchWalletData = useCallback(async () => {
     try {
       setLoading(true);
       
-      // Fetch balance
       const balanceResponse = await api.get('/transactions/balance');
       setBalance(balanceResponse.data.balance);
 
-      // Fetch transactions
       const transactionsResponse = await api.get(`/transactions?type=${filter === 'all' ? '' : filter}`);
       setTransactions(transactionsResponse.data.transactions || []);
     } catch (error) {
@@ -39,7 +33,11 @@ const WalletPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    fetchWalletData();
+  }, [fetchWalletData]);
 
   const getTransactionIcon = (transaction) => {
     const isReceived = transaction.to._id === user.id;
